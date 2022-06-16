@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import memesData from "../constants/memesData";
 
 export const Meme = () => {
-  const [memeImage, setMemeImage] = useState("");
+  const [memeImage, setMemeImage] = useState("http://i.imgflip.com/1bij.jpg");
+  const [meme, setMeme] = useState({
+    topText: "",
+    bottomText: "",
+    randomImage: "http://i.imgflip.com/1bij.jpg",
+  });
+  const [allMemeImages, setAllMemeImages] = useState(memesData);
+
+  // setMemeImage(prevState => !prevState)
 
   function getMemeImage() {
-    const memesArray = memesData.data.memes;
+    const memesArray = allMemeImages.data.memes;
     const randomNumber = Math.floor(Math.random() * memesArray.length);
-    setMemeImage(memesArray[randomNumber].url);
+    const url = memesArray[randomNumber].url;
+    setMeme((prevMeme) => ({
+      ...prevMeme,
+      randomImage: url,
+    }));
   }
 
   return (
@@ -37,7 +49,7 @@ export const Meme = () => {
       </div>
 
       <div className="flex justify-center items-center">
-        <img src={memeImage} alt="meme" className="w-max" />
+        <img src={meme.randomImage} alt="meme" className="w-max" />
       </div>
     </div>
   );
