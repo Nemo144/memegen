@@ -1,21 +1,24 @@
-import React, { useState } from "react";
-import memesData from "../constants/memesData";
+import { data } from "autoprefixer";
+import React, { useState, useEffect } from "react";
+// import memesData from "../constants/memesData";
 
 export const Meme = () => {
-  const [memeImage, setMemeImage] = useState("http://i.imgflip.com/1bij.jpg");
   const [meme, setMeme] = useState({
     topText: "",
     bottomText: "",
     randomImage: "http://i.imgflip.com/1bij.jpg",
   });
-  const [allMemeImages, setAllMemeImages] = useState(memesData);
+  const [allMemes, setAllMemes] = useState([]);
 
-  // setMemeImage(prevState => !prevState)
+  useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => setAllMemes(data.data.memes));
+  }, []);
 
   function getMemeImage() {
-    const memesArray = allMemeImages.data.memes;
-    const randomNumber = Math.floor(Math.random() * memesArray.length);
-    const url = memesArray[randomNumber].url;
+    const randomNumber = Math.floor(Math.random() * allMemes.length);
+    const url = allMemes[randomNumber].url;
     setMeme((prevMeme) => ({
       ...prevMeme,
       randomImage: url,
