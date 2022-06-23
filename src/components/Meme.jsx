@@ -22,6 +22,14 @@ export const Meme = () => {
     }));
   }
 
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setMeme((prevMeme) => ({
+      ...prevMeme,
+      [name]: value,
+    }));
+  }
+
   return (
     <div>
       <div className="flex m-10 p-5">
@@ -29,12 +37,18 @@ export const Meme = () => {
           type="text"
           className="w-full rounded-lg border-zinc-300 mr-6 bg-transparent border py-4 px-4 text-black outline-none focus:ring-2 focus:ring-gray-200"
           placeholder="Top text"
+          onChange={handleChange}
+          name="topText"
+          value={meme.topText}
         />
 
         <input
           type="text"
           className="w-full rounded-lg border-zinc-300 bg-transparent border py-4 px-4 text-black outline-none focus:ring-2 focus:ring-gray-200"
           placeholder="Bottom text"
+          onChange={handleChange}
+          name="bottomText"
+          value={meme.bottomText}
         />
       </div>
 
@@ -50,6 +64,13 @@ export const Meme = () => {
 
       <div className="flex justify-center items-center">
         <img src={meme.randomImage} alt="meme" className="w-max" />
+      </div>
+
+      <div className="flex flex-col justify-center items-center">
+        <h1 className="text-white text-2xl font-extrabold -my-80">
+          {meme.bottomText}
+        </h1>
+        <h2 className="text-white text-2xl font-extrabold">{meme.topText}</h2>
       </div>
     </div>
   );
