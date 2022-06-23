@@ -67,10 +67,10 @@ export const Meme = () => {
       </div>
 
       <div className="flex flex-col justify-center items-center">
-        <h1 className="text-white text-2xl font-extrabold -my-80">
+        <h1 className="text-white text-4xl font-extrabold pb-7 -my-80">
           {meme.bottomText}
         </h1>
-        <h2 className="text-white text-2xl font-extrabold">{meme.topText}</h2>
+        <h2 className="text-white text-4xl font-extrabold">{meme.topText}</h2>
       </div>
     </div>
   );
