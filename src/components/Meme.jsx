@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import React, { useState, useEffect } from "react";
 
 export const Meme = () => {
