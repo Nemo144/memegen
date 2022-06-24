@@ -1,6 +1,5 @@
 import { data } from "autoprefixer";
 import React, { useState, useEffect } from "react";
-// import memesData from "../constants/memesData";
 
 export const Meme = () => {
   const [meme, setMeme] = useState({
